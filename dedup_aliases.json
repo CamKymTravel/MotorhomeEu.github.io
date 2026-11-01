@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "hidden_aliases": {
+    "KY-0070": "KY-0021",
+    "KY-1238": "KY-0065",
+    "KY-0222": "KY-0072",
+    "KY-0604": "KY-0172",
+    "KY-0264": "KY-0183",
+    "KY-0458": "KY-0208",
+    "KY-0680": "KY-0650",
+    "KY-1094": "KY-0670",
+    "KY-0475": "KY-0277",
+    "KY-0498": "KY-0285",
+    "KY-0182": "KY-0143",
+    "KY-0921": "KY-0199",
+    "KY-0360": "KY-0332",
+    "KY-0423": "KY-0260",
+    "KY-0258": "KY-0136",
+    "KY-0486": "KY-0295",
+    "KY-0757": "KY-0204",
+    "KY-1111": "KY-0629",
+    "KY-1000": "KY-0274"
+  },
+  "reviewed_merges": [
+    {
+      "kept_id": "KY-0021",
+      "hidden_id": "KY-0070",
+      "reason": "Same Derbyshire well-dressing activity; 2031 and 2033 are alternative year windows."
+    },
+    {
+      "kept_id": "KY-0065",
+      "hidden_id": "KY-1238",
+      "reason": "Same Isle of Man TT spectator event and the same 2033 island visit."
+    },
+    {
+      "kept_id": "KY-0072",
+      "hidden_id": "KY-0222",
+      "reason": "Same Edinburgh Military Tattoo event; 2031 and 2033 are alternative opportunities."
+    },
+    {
+      "kept_id": "KY-0172",
+      "hidden_id": "KY-0604",
+      "reason": "Same World Custard Pie Championships spectator event in Kent."
+    },
+    {
+      "kept_id": "KY-0183",
+      "hidden_id": "KY-0264",
+      "reason": "Same Andalusian horses performance in Jerez."
+    },
+    {
+      "kept_id": "KY-0208",
+      "hidden_id": "KY-0458",
+      "reason": "Same Parco Giardino Sigurtà and spring garden visit."
+    },
+    {
+      "kept_id": "KY-0650",
+      "hidden_id": "KY-0680",
+      "reason": "Same Pastéis de Belém patisserie tasting."
+    },
+    {
+      "kept_id": "KY-0670",
+      "hidden_id": "KY-1094",
+      "reason": "Same Dijon gingerbread producer, museum and tasting; production viewing is optional."
+    },
+    {
+      "kept_id": "KY-0277",
+      "hidden_id": "KY-0475",
+      "reason": "Same Chaumont-sur-Loire International Garden Festival."
+    },
+    {
+      "kept_id": "KY-0285",
+      "hidden_id": "KY-0498",
+      "reason": "Same Lisbon Estufa Fria garden."
+    },
+    {
+      "kept_id": "KY-0143",
+      "hidden_id": "KY-0182",
+      "reason": "Same Camargue Pont de Gau flamingo reserve experience."
+    },
+    {
+      "kept_id": "KY-0199",
+      "hidden_id": "KY-0921",
+      "reason": "Same Great Ķemeri Bog boardwalk, including optional sunrise."
+    },
+    {
+      "kept_id": "KY-0332",
+      "hidden_id": "KY-0360",
+      "reason": "Same Danish Wadden Sea tractor-bus oyster safari."
+    },
+    {
+      "kept_id": "KY-0260",
+      "hidden_id": "KY-0423",
+      "reason": "Same Sigulda bobsleigh track; seasonal ride optional."
+    },
+    {
+      "kept_id": "KY-0136",
+      "hidden_id": "KY-0258",
+      "reason": "Same guided Dovrefjell wild musk-ox safari."
+    },
+    {
+      "kept_id": "KY-0295",
+      "hidden_id": "KY-0486",
+      "reason": "Same Rundāle Palace rose gardens."
+    },
+    {
+      "kept_id": "KY-0204",
+      "hidden_id": "KY-0757",
+      "reason": "Same Trapani-Paceco salt-pans and windmills; wildlife/salt farming in one site."
+    },
+    {
+      "kept_id": "KY-0629",
+      "hidden_id": "KY-1111",
+      "reason": "Same Méert historic Lille waffle shop/tasting."
+    },
+    {
+      "kept_id": "KY-0274",
+      "hidden_id": "KY-1000",
+      "reason": "Same Saint Naum Springs sightseeing/rowboat/peacocks experience."
+    }
+  ]
+}
