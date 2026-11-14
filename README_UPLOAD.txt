@@ -1,15 +1,16 @@
-Kym and Lesley Europe - Pass 267 (iPad readability)
+Kym & Lesley Europe — Pass 268 iPad no-scroll layout
 
-ONE folder for GitHub Pages: docs
-FIVE files total, no subfolders.
+One docs folder, 5 files, no nested folders.
 
-Changes: Review all has larger titles, location details, filters, dropdowns, rating totals and clearer contrast. Added space above the app heading for iPad status indicators. Previous Pass 266 brighter-red Skip button is unchanged. No question, saving, vote or backup logic changed.
+Changes to Explore only:
+- Main question has large title; photo on left; large story and five voting buttons on right.
+- No vertical page scrolling during question voting in iPad landscape.
+- Tap Read full description for longer text in its own overlay.
+- Tap Notes or More detail to open a readable overlay; tap their title to close.
+- Existing 1,268 visible questions, save/backup logic, five voting colours and Lesley Highlight preserved.
+- Review All keeps Pass 267 typography and filters.
 
-Updating a current GitHub Pages repo:
-- Back up Kym's answers with Share & backup before changing builds.
-- Extract this ZIP and upload/replace all five files inside docs to the existing docs folder on the main branch.
-- Do not create docs/docs or upload the ZIP itself.
-- In GitHub Pages settings publish from main and /docs.
-- Reload the same published URL in Safari. If old styling is cached, close/reopen Safari and refresh; do not clear website data.
-
-A GitHub upload cannot by itself verify saved answers in Safari. Always keep exported JSON backups.
+Before updating: use Share & backup to export Kym's JSON choices.
+Unzip and copy the five files in the docs folder to the existing GitHub repo /docs; DO NOT create docs/docs.
+Keep the SAME GitHub Pages URL to preserve Safari progress. Do not clear Safari website data.
+Test on the physical iPad in landscape, including a note, a photo, Next, back, close and reopen.
