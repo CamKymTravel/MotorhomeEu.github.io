@@ -1,23 +1,23 @@
 {
-  "name": "Kym's Europe \u2014 One Master Questionnaire",
-  "short_name": "Kym's Europe",
-  "start_url": "./index.html",
+  "name": "Kym & Lesley — Europe decision book",
+  "short_name": "Kym’s Europe",
+  "description": "European experiences — iPad landscape questionnaire",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#10151d",
-  "theme_color": "#10151d",
+  "background_color": "#0f151c",
+  "theme_color": "#111820",
+  "orientation": "landscape",
   "icons": [
     {
       "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
       "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ]
 }
