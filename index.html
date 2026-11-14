@@ -474,6 +474,11 @@ html,body,button,.sticky-nav,.tab,.vote,.lesley-toggle,.card,summary{touch-actio
 }
 @media print{#explore .kym-full-story{display:none}}
 
+
+/* PASS271: slightly enlarge the filter disclosure tap target while retaining no-scroll layout. */
+@media (min-width:700px) and (orientation:landscape){
+  #explore .filter-drawer>summary{min-height:30px!important;height:30px!important;line-height:28px!important}
+}
 </style><style>
 /* PASS261: Make the existing no-repeat navigation discoverable on iPad.
    No change to the answer, cursor or JSON logic. */
@@ -527,7 +532,7 @@ html,body,button,.sticky-nav,.tab,.vote,.lesley-toggle,.card,summary{touch-actio
 </style>
 </head><body><div id="kym-rotate-screen" role="dialog" aria-modal="true" aria-label="Please turn your iPad to landscape"><div class="rotate-content"><div class="rotate-visual" aria-hidden="true">↻ ▭</div><h2>Turn your iPad sideways</h2><p>Kym’s Europe slideshow is designed for <strong>landscape mode</strong>, with the photograph, story and choices visible together.</p></div></div><div id="qa-dev-banner" role="status">Landscape slideshow · Photos displayed over home Wi-Fi</div><div class="shell"><header class="head"><div><div class="brand">🩷 Kym & Lesley’s Europe</div><div class="subtitle">Look at the picture, read the story, and choose together</div></div><div class="edition">Home · TV slideshow</div></header>
 <nav class="tabs" aria-label="Main navigation"><button class="tab active" id="tExplore">Explore</button><button class="tab" id="tReview">Review all</button><button class="tab" id="tMust">🩷 Favourites</button><button class="tab" id="tShare">Share & backup</button></nav>
-<div id="pass218StorageWarning" role="alert" hidden style="margin:4px 0 6px;padding:9px 12px;border:2px solid #ffb54b;border-radius:10px;background:#312317;color:#fff;font-size:.9rem;font-weight:700">⚠️ This browser is not retaining answers. Your choices may disappear when it closes. Open Share &amp; backup and save a JSON backup before leaving.</div>
+<div id="pass218StorageWarning" role="alert" hidden style="margin:4px 0 6px;padding:9px 12px;border:2px solid #ffb54b;border-radius:10px;background:#312317;color:#fff;font-size:.9rem;font-weight:700">⚠️ This browser is not retaining answers. Your choices may disappear when it closes. Open Share &amp; backup and save a JSON backup before leaving.</div><button class="btn" id="pass270EmergencyBackup" type="button" aria-label="Open Share and backup to protect these answers">Backup now</button>
 <div class="note-banner">🌷 One experience at a time. Discuss it, choose a colour, then tap <b>Next</b>. Use the same Safari address every time; always keep a JSON backup.</div>
 <section id="explore"><details class="filter-drawer"><summary>⚙ Filters & question order</summary><div class="toptools"><select id="pickType" aria-label="Question type"><option value="all">All experiences & decisions</option><option value="experience">Experiences only</option><option value="photos">Photos with named sources</option><option value="needs-photo">Experiences needing a named photo</option><option value="route">Route and timing decisions</option><option value="shopping">Shopping and maker tours</option><option value="film">Film and TV locations</option><option value="wwii">WWII history</option><option value="unanswered">Not yet answered</option></select><select id="pickYear" aria-label="Travel year"><option value="all">All years</option></select><select id="pickOrder" aria-label="Display order"><option value="mixed">🎲 Mixed-up discoveries</option><option value="trip">📅 Trip-year order</option></select><button class="btn" id="resumeBtn">Next unanswered</button></div></details><div class="status" id="resumeFeedback" role="status" aria-live="polite"></div>
 <div class="overview"><strong id="position">Question 1</strong><span id="progressText">Progress loading…</span></div><div class="track" role="progressbar" aria-label="Questionnaire progress"><div class="progress" id="progressBar"></div></div><div id="card" aria-live="off"></div><div class="progress-actions"><span class="small" id="setCount">Answers and your last question normally save automatically; check for warnings</span><span class="small">Choose any colour · change it later</span></div><div class="break-banner hidden" id="breakBanner">🌷 Nice work! You can finish here or keep exploring. Check for any save warnings and keep a JSON backup.</div></section>
@@ -3113,4 +3118,166 @@ for(const [id,fields] of Object.entries(PASS216_PHOTO_PATCH)){const p=PASS112_ON
 })();
 </script>
 <script id="pass241-release-meta">window.__kymBuildPass=264;</script>
+
+<style id="pass269-fullstory-noscr-layout">
+/* PASS269: full main write-up, big photo, compact votes/navigation, zero question scrolling.
+   No question records, storage code, export/import code or voting handlers modified. */
+@media screen and (min-width:700px) and (orientation:landscape){
+  html{scroll-behavior:auto}
+  body:has(#explore:not(.hidden)){height:100dvh;overflow:hidden}
+  .shell:has(#explore:not(.hidden)){
+    display:grid;grid-template-columns:minmax(260px,27%) minmax(0,1fr);grid-template-rows:42px minmax(0,1fr);
+    column-gap:8px;row-gap:0;align-items:stretch;
+    width:100%;max-width:1700px;height:100dvh;min-height:0;overflow:hidden;
+    padding:calc(40px + env(safe-area-inset-top, 0px)) 11px calc(74px + env(safe-area-inset-bottom, 0px))
+  }
+  .shell:has(#explore:not(.hidden))>.head{grid-column:1;grid-row:1;min-width:0;margin:0;padding:0 0 2px;border:0;align-items:center}
+  .shell:has(#explore:not(.hidden)) .brand{font-size:clamp(20px,2.05vw,28px);font-weight:850;white-space:nowrap;letter-spacing:-.025em}
+  .shell:has(#explore:not(.hidden)) .subtitle,.shell:has(#explore:not(.hidden)) .edition{display:none}
+  .shell:has(#explore:not(.hidden))>.tabs{grid-column:2;grid-row:1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;padding:0 0 2px;margin:0;align-items:stretch}
+  .shell:has(#explore:not(.hidden))>.tabs .tab{min-height:38px;font-size:clamp(13px,1.35vw,18px);padding:4px 3px;line-height:1.1;border-radius:9px}
+  .shell:has(#explore:not(.hidden))>.note-banner{display:none!important}
+  #explore:not(.hidden){grid-column:1/-1;grid-row:2;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+  #explore .filter-drawer{flex:0 0 auto;margin:0 0 1px;max-height:23px;z-index:50}
+  #explore .filter-drawer>summary{min-height:21px;height:22px;padding:0px 8px;font-size:14px;line-height:20px}
+  #explore .filter-drawer[open]{position:fixed;z-index:1200;left:3vw;top:calc(50px + env(safe-area-inset-top,0px));
+    width:94vw;max-height:calc(100dvh - 96px);overflow:auto;background:#202f40;
+    border:3px solid #b0cde9;border-radius:14px;padding:12px;box-shadow:0 0 0 100vmax #000b,0 10px 35px #000b}
+  #explore .filter-drawer[open]>summary{height:42px;min-height:42px;padding:7px;font-size:21px;line-height:1.25}
+  #explore .filter-drawer[open] .toptools{margin:9px 0;gap:9px}
+  #explore #resumeFeedback{display:none!important}
+  #explore .overview{flex:0 0 auto;min-height:24px;font-size:clamp(15px,1.45vw,19px);margin:1px 0 2px;line-height:1.24}
+  #explore .track{flex:0 0 auto;height:4px;margin:0 0 5px}
+  #explore #card{flex:1;min-height:0;overflow:hidden}
+  #explore #card>.card{height:100%;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+  #explore .card-hero{flex:0 0 auto;min-height:43px;gap:7px;padding:4px 9px}
+  #explore .card-hero .country-flag{font-size:clamp(24px,2.25vw,33px);min-width:32px}
+  #explore .card-hero .country-name{font-size:clamp(20px,1.95vw,29px);line-height:1.08}
+  #explore .card-hero .location{font-size:clamp(13px,1.22vw,17px);line-height:1.17}
+  #explore .card .body{flex:1;min-height:0;overflow:hidden;display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    grid-template-rows:minmax(0,1fr) 20px 32px;gap:2px 7px;padding:5px 10px 6px}
+  #explore .card .body>.question-layout{grid-column:1/-1;grid-row:1;min-height:0;overflow:hidden;
+    display:grid;grid-template-columns:minmax(0,.49fr) minmax(0,.51fr);
+    grid-template-rows:auto minmax(0,1fr) 52px;gap:5px 13px;align-items:stretch;align-self:stretch;height:100%}
+  #explore .question-core{display:contents}
+  #explore .question-core h1{grid-column:2;grid-row:1;min-width:0;margin:0;
+    font-size:clamp(24px,2.25vw,34px)!important;line-height:1.12;letter-spacing:-.02em}
+  #explore .question-core>.photo-block{grid-column:1;grid-row:1/3;display:block;min-height:0;height:100%;
+    min-width:0;overflow:hidden;position:relative;margin:0;border-radius:11px}
+  #explore .question-core>.photo-block>img{display:block!important;width:100%;height:100%!important;max-height:none!important;min-height:0!important;
+    object-fit:cover;border-radius:11px}
+  #explore .question-core>.photo-block .photo-loading{height:100%!important;inset:0;min-height:0}
+  #explore .question-core>.photo-block .qa-unfilled-inner:not([hidden]){min-height:100%!important;height:100%!important}
+  #explore .question-core>.photo-block .photo-credit{position:absolute;bottom:0;left:0;right:0;
+    max-height:54px;overflow:hidden;margin:0;padding:4px 8px;
+    background:#0b1624dc;border-radius:0 0 11px 11px;
+    font-size:clamp(10px,.95vw,13px);line-height:1.12;color:#e5eef8;z-index:1}
+  #explore .question-core>.kym-story{grid-column:2;grid-row:2;min-height:0;min-width:0;overflow:hidden;
+    align-self:stretch;display:block}
+  #explore .question-core>.kym-story .description{display:block!important;overflow:visible!important;
+    -webkit-line-clamp:unset!important;line-clamp:unset!important;-webkit-box-orient:initial!important;
+    font-size:var(--kym-story-size,clamp(19px,1.85vw,25px))!important;line-height:1.32!important;
+    color:#fff;white-space:pre-line;margin:0}
+  #explore .question-core>.kym-story .kym-full-story{display:none}
+  #explore .question-actions{grid-column:1/-1;grid-row:3;display:block;position:static;align-self:stretch;margin:0;min-width:0}
+  #explore .question-actions .five{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin:0;float:left;width:81%;height:100%}
+  #explore .question-actions .vote,#explore .question-actions .vote.pink{grid-column:auto!important;
+    display:flex;align-items:center;justify-content:center;min-height:0!important;height:100%;padding:3px 4px!important;
+    font-size:clamp(15px,1.5vw,20px)!important;line-height:1.03;border-radius:9px;text-align:center;white-space:nowrap}
+  #explore .question-actions .vote small{display:none}
+  #explore .question-actions .lesley-toggle{display:flex;align-items:center;justify-content:center;float:right;width:18%;
+    height:100%;min-height:0!important;margin:0;padding:2px 3px;font-size:clamp(12px,1.25vw,17px);
+    line-height:1.07;border-radius:9px;text-align:center}
+  #explore .question-actions .lesley-toggle small{display:none!important}
+  #explore .card .body>.saved-status{grid-column:1;grid-row:2;min-height:0;line-height:1.12;font-size:13px;margin:0}
+  #explore .card .body>.clear-choice:not(.hidden){grid-column:2;grid-row:2;justify-self:end;align-self:start;
+    min-height:19px;margin:0;padding:0 7px;font-size:12px;line-height:1.1}
+  #explore .card .body>.note-panel{grid-column:1;grid-row:3;margin:0;min-width:0}
+  #explore .card .body>.details{grid-column:2;grid-row:3;margin:0;min-width:0}
+  #explore .card .body>details:not([open])>summary{font-size:clamp(13px,1.25vw,17px);line-height:1.1;
+    padding:5px 8px;min-height:31px;max-height:31px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #explore .card .body>.conflict,#explore .card .body>.legacy-note{position:fixed;z-index:1002;bottom:calc(70px + env(safe-area-inset-bottom,0px));
+    left:12px;right:12px;max-height:100px;overflow:auto;font-size:12px;background:#383344}
+  #explore .progress-actions,.shell:has(#explore:not(.hidden))>.footer-info{display:none!important}
+  #explore .note-panel[open],#explore .card .body>.details[open]{position:fixed;z-index:1003;
+    top:clamp(28px,8dvh,78px);left:50%;transform:translateX(-50%);
+    width:min(850px,94vw);max-height:84dvh;overflow:auto;
+    padding:14px 19px;background:#203046;border:3px solid #a7c5e5;border-radius:16px;
+    box-shadow:0 0 0 100vmax #000b,0 16px 50px #000c}
+  #explore .note-panel[open]>summary,#explore .card .body>.details[open]>summary{
+    font-size:clamp(21px,2.2vw,29px);color:#fff;background:#344861;border-radius:10px;padding:10px 12px;min-height:0;max-height:none}
+  #explore .note-panel[open] textarea{font-size:21px;min-height:90px}
+  #explore .card .body>.details[open] .description{font-size:22px!important;line-height:1.45!important}
+  .shell:has(#explore:not(.hidden)) .sticky-nav{width:min(100%,1700px);grid-template-columns:.65fr 1fr .95fr;gap:6px;
+    padding:5px 11px calc(5px + env(safe-area-inset-bottom,0px))}
+  .shell:has(#explore:not(.hidden)) .sticky-nav .btn{min-height:43px!important;max-height:47px;
+    font-size:clamp(15px,1.5vw,20px);padding:5px 7px;border-radius:9px}
+}
+@media screen and (min-width:700px) and (max-width:1060px) and (orientation:landscape){
+  .shell:has(#explore:not(.hidden)){grid-template-columns:minmax(240px,27%) minmax(0,1fr)}
+  #explore .card .body>.question-layout{grid-template-columns:minmax(0,.46fr) minmax(0,.54fr)}
+  #explore .question-core h1{font-size:clamp(22px,2.3vw,28px)!important}
+  #explore .question-core>.kym-story .description{font-size:var(--kym-story-size,21px)!important;line-height:1.29!important}
+  #explore .question-actions .five{width:80%}
+  #explore .question-actions .lesley-toggle{width:19%}
+}
+@media screen and (min-width:700px) and (max-height:780px) and (orientation:landscape){
+  .shell:has(#explore:not(.hidden)){padding-top:calc(35px + env(safe-area-inset-top,0px));padding-bottom:calc(74px + env(safe-area-inset-bottom,0px));grid-template-rows:38px minmax(0,1fr)}
+  .shell:has(#explore:not(.hidden))>.tabs .tab{min-height:35px}
+  #explore .card-hero{min-height:39px;padding:2px 9px}
+  #explore .card .body{grid-template-rows:minmax(0,1fr) 18px 30px;padding:4px 8px}
+  #explore .card .body>.question-layout{grid-template-rows:auto minmax(0,1fr) 46px;gap:4px 10px}
+  #explore .question-core h1{font-size:clamp(22px,2.15vw,29px)!important;line-height:1.11}
+  #explore .question-core>.kym-story .description{font-size:var(--kym-story-size,21px)!important;line-height:1.28!important}
+  #explore .question-actions .vote,#explore .question-actions .vote.pink{font-size:clamp(14px,1.35vw,19px)!important}
+  .shell:has(#explore:not(.hidden)) .sticky-nav .btn{min-height:40px!important}
+}
+
+  body:has(#explore:not(.hidden))>.sticky-nav{position:fixed;bottom:0;left:0;right:0;transform:none;
+    width:100%;max-width:none;min-height:0;height:56px;grid-template-columns:.7fr 1fr .96fr;
+    grid-template-rows:44px;align-items:center;gap:7px;
+    padding:5px 11px calc(5px + env(safe-area-inset-bottom,0px));z-index:20;background:var(--bg)}
+  body:has(#explore:not(.hidden))>.sticky-nav .btn{height:44px!important;min-height:44px!important;max-height:44px!important;
+    padding:4px 8px!important;font-size:clamp(16px,1.45vw,19px)!important;line-height:1.08;border-radius:9px}
+  body:has(#explore:not(.hidden)) #pass218StorageWarning:not([hidden]){position:fixed;z-index:1500;
+    top:calc(50px + env(safe-area-inset-top,0px));left:3vw;right:3vw;max-width:1000px;margin:0 auto!important}
+
+@media print{#pass269-fullstory-noscr-layout{display:none}}
+</style>
+
+
+<style id="pass270-safeguards-and-readability">
+/* PASS270: a save FAILURE must never cover the top tabs or prevent exporting a copy.
+   Uses a separate button because legacy warning writers replace textContent.
+   Other than the alert, keep the approved PASS269 no-scroll layout exactly intact. */
+#pass270EmergencyBackup{display:none}
+@media screen and (min-width:700px) and (orientation:landscape){
+  .shell:has(#explore:not(.hidden)) #pass218StorageWarning:not([hidden]){
+    position:fixed!important;top:auto!important;right:12px!important;left:12px!important;
+    bottom:calc(62px + env(safe-area-inset-bottom,0px))!important;z-index:2000;
+    width:auto;max-height:100px;overflow:auto;margin:0!important;
+    padding:10px 155px 10px 13px!important;border-width:3px!important;
+    background:#382213!important;font-size:clamp(16px,1.45vw,20px)!important;
+    line-height:1.24!important;box-shadow:0 1px 13px #000b;
+  }
+  .shell:has(#explore:not(.hidden)) #pass218StorageWarning:not([hidden])~#pass270EmergencyBackup{
+    display:flex;align-items:center;justify-content:center;position:fixed;
+    z-index:2001;right:22px;bottom:calc(68px + env(safe-area-inset-bottom,0px));
+    min-height:38px;max-height:40px;width:138px;padding:5px 8px;
+    background:#fff4d6;color:#2a1300;font-size:16px;font-weight:900;white-space:nowrap;
+    border:2px solid #ffe78e;border-radius:9px;box-shadow:0 2px 10px #0008;
+  }
+  /* Save confirmation is important: do not make it as small as a photo credit. */
+  #explore .card .body>.saved-status{font-size:clamp(15px,1.18vw,17px);
+    line-height:1.22;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+  #explore .card .body>details:not([open])>summary{font-size:clamp(15px,1.25vw,18px);}
+}
+</style>
+<script id="pass270-save-warning-route">
+/* PASS270: use existing tab-selection handler; never mutate answer data here. */
+(document.getElementById('pass270EmergencyBackup')||{}).onclick=function(){
+  const tab=document.getElementById('tShare');if(tab)tab.click();
+};
+</script>
 </body></html>
